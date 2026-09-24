@@ -1,0 +1,167 @@
+function openCreator() {
+
+    document
+        .getElementById("create")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+function scrollToPrompt() {
+
+    document
+        .querySelector(".prompt-section")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+function generatePrompt() {
+
+    const idea =
+        document.getElementById("prompt").value;
+
+    const style =
+        document.getElementById("style").value;
+
+    const ratio =
+        document.getElementById("ratio").value;
+
+    const duration =
+        document.getElementById("duration").value;
+
+
+    if (!idea.trim()) {
+
+        alert("Please enter your video idea first.");
+
+        return;
+
+    }
+
+
+    const result = `
+Create a professional ${duration} ${style} video.
+
+Video Idea:
+${idea}
+
+Visual Style:
+High quality ${style} animation, cinematic lighting,
+detailed characters, smooth camera movement,
+natural expressions, professional composition.
+
+Camera:
+Dynamic cinematic camera movement with smooth transitions.
+
+Environment:
+Detailed background, realistic lighting and depth.
+
+Audio:
+Add suitable background music and character dialogue.
+
+Aspect Ratio:
+${ratio}
+
+Quality:
+Ultra high quality, smooth animation, detailed visuals,
+consistent characters and professional storytelling.
+`;
+
+
+    document.getElementById("generatedPrompt")
+        .value = result.trim();
+
+
+    alert("AI Prompt Generated!");
+}
+
+
+function copyPrompt() {
+
+    const prompt =
+        document.getElementById("generatedPrompt");
+
+    if (!prompt.value) {
+
+        alert("Generate a prompt first.");
+
+        return;
+
+    }
+
+    navigator.clipboard.writeText(prompt.value);
+
+    alert("Prompt copied!");
+
+}
+
+
+function generateVideo() {
+
+    const idea =
+        document.getElementById("prompt").value;
+
+
+    if (!idea.trim()) {
+
+        alert("Please write your video idea first.");
+
+        return;
+
+    }
+
+
+    const preview =
+        document.querySelector(".preview");
+
+
+    preview.innerHTML = `
+        <div class="preview-icon">⚡</div>
+        <h3>Preparing Your AI Video...</h3>
+        <p>AI video generation will start here.</p>
+    `;
+
+}
+
+
+function useCharacter(name) {
+
+    const prompt =
+        document.getElementById("prompt");
+
+    prompt.value +=
+        ` Create a ${name} character in the story.`;
+
+    document
+        .getElementById("create")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+function createCharacter() {
+
+    const name =
+        prompt("Enter character name:");
+
+    if (!name) return;
+
+
+    const promptBox =
+        document.getElementById("prompt");
+
+    promptBox.value +=
+        ` Create a unique character named ${name}.`;
+
+    alert(
+        "Character added to your video idea!"
+    );
+
+}
